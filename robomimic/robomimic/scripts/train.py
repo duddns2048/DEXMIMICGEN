@@ -51,6 +51,8 @@ from robomimic.config import config_factory
 from robomimic.algo import algo_factory, RolloutPolicy
 from robomimic.utils.log_utils import PrintLogger, DataLogger, flush_warnings, log_warning
 
+import wandb
+
 def train(config, device, auto_remove_exp=False, resume=False):
     """
     Train a model using the algorithm.
@@ -427,10 +429,10 @@ def train(config, device, auto_remove_exp=False, resume=False):
                 os.remove(video_paths[env_name])
 
         # # maybe upload rollout videos to wandb
-        # if Macros.USE_WANDB and (video_paths is not None):
-        #     for k in video_paths:
-        #         if os.path.exists(video_paths[k]):
-        #             wandb.log({"video": wandb.Video(video_paths[k], format="mp4")})
+        if Macros.USE_WANDB and (video_paths is not None):
+            for k in video_paths:
+                if os.path.exists(video_paths[k]):
+                    wandb.log({"video": wandb.Video(video_paths[k], format="mp4")})
 
         # Save model checkpoints based on conditions (success rate, validation loss, etc)
         if should_save_ckpt and did_rollouts:
@@ -590,7 +592,7 @@ def main(args):
     device = TorchUtils.get_torch_device(try_to_use_cuda=config.train.cuda)
 
     # # wandb project name
-    # wandb_project_name = args.wandb_project_name
+    wandb_project_name = args.wandb_project_name
 
     # maybe modify config for debugging purposes
     if args.debug:
@@ -716,11 +718,11 @@ if __name__ == "__main__":
     )
 
     # # wandb project name
-    # parser.add_argument(
-    #     "--wandb_project_name",
-    #     type=str,
-    #     default="test",
-    # )
+    parser.add_argument(
+        "--wandb_project_name",
+        type=str,
+        default="test",
+    )
 
     args = parser.parse_args()
     main(args)
