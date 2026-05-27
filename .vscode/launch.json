@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Train BC-RNN",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/robomimic/robomimic/scripts/train.py",
+        "args": [
+          "--config","${workspaceFolder}/dexmimicgen/datasets/train_configs/bcrnn_action_dict/bc_rnn_image_ds_two_arm_pouring_humanoid_D0_seed_201_debug.json",
+          "--name", "tmptmptmp",
+          "--debug"
+
+        ],
+        "console": "integratedTerminal",
+        "justMyCode": false,
+        "cwd": "${workspaceFolder}/robomimic/robomimic",
+        "env": {
+          "CUDA_VISIBLE_DEVICES": "1"
+        }
+      }
+    ]
+  }

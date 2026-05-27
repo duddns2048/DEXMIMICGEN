@@ -1,0 +1,61 @@
+# --- Datasets / training outputs (LARGE) ---
+dexmimicgen/datasets/
+**/train_results/
+**/train_configs/
+*.hdf5
+*.h5
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+*.egg
+build/
+dist/
+develop-eggs/
+.eggs/
+wheels/
+pip-wheel-metadata/
+MANIFEST
+
+# --- Virtual envs ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+
+# --- ML/experiment tracking ---
+wandb/
+mlruns/
+tensorboard/
+*.ckpt
+*.pth
+*.pt
+*.pkl
+*.npy
+*.npz
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+
+# --- Local config / secrets ---
+.env
+.env.local
+*.local
+
+# --- Project-specific ---
+screenshot.png
+*.mp4
+*.avi
+*.gif
