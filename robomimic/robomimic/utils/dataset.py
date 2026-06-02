@@ -130,7 +130,7 @@ class SequenceDataset(torch.utils.data.Dataset):
         self.get_pad_mask = get_pad_mask
 
         self.first_n_demos = first_n_demos
-        self.load_demo_info(filter_by_attribute=self.filter_by_attribute, first_n=self.first_n_demos) # FLAG: 데이터 로드
+        self.load_demo_info(filter_by_attribute=self.filter_by_attribute, first_n=self.first_n_demos)
 
         # maybe prepare for normalization
         self.obs_normalization_stats = None
@@ -150,7 +150,7 @@ class SequenceDataset(torch.utils.data.Dataset):
                         obs_keys_in_memory.append(k)
             self.obs_keys_in_memory = obs_keys_in_memory
 
-            self.hdf5_cache = self.load_dataset_in_memory( # FLAG: 데이터 로드
+            self.hdf5_cache = self.load_dataset_in_memory( # FLAG: 데이터로드2
                 demo_list=self.demos,
                 hdf5_file=self.hdf5_file,
                 obs_keys=self.obs_keys_in_memory,
@@ -210,7 +210,7 @@ class SequenceDataset(torch.utils.data.Dataset):
         # determine index mapping
         self.total_num_sequences = 0
         for ep in self.demos:
-            demo_length = self.hdf5_file["data/{}".format(ep)].attrs["num_samples"]
+            demo_length = self.hdf5_file["data/{}".format(ep)].attrs["num_samples"] # FLAG seq 길이
             self._demo_id_to_start_indices[ep] = self.total_num_sequences
             self._demo_id_to_demo_length[ep] = demo_length
 

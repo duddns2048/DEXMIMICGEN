@@ -215,7 +215,7 @@ def dataset_factory(config, obs_keys, filter_by_attribute=None, first_n_demos=No
         kwargs_for_ds_ind["hdf5_path"] = ds_cfg["path"]
         kwargs_for_ds_ind["filter_by_attribute"] = ds_cfg.get("filter_key", filter_by_attribute)
         dataset_objects.append(
-            SequenceDataset(**kwargs_for_ds_ind) # 데이터셋
+            SequenceDataset(**kwargs_for_ds_ind) # FLAG 데이터로드1
         )
 
     # maybe construct MetaDataset to handle constructing batches with sampling across all datasets.

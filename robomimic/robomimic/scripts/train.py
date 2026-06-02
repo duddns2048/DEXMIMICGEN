@@ -203,7 +203,7 @@ def train(config, device, auto_remove_exp=False, resume=False):
     print("")
 
     # load training data
-    trainset, validset = TrainUtils.load_data_for_training(
+    trainset, validset = TrainUtils.load_data_for_training( # FLAG 데이터로드0
         config, obs_keys=shape_meta["all_obs_keys"])
     train_sampler = { k: trainset[k].get_dataset_sampler() for k in trainset }
     print("\n============= Training Datasets =============")
@@ -429,7 +429,7 @@ def train(config, device, auto_remove_exp=False, resume=False):
                 os.remove(video_paths[env_name])
 
         # # maybe upload rollout videos to wandb
-        if Macros.USE_WANDB and (video_paths is not None):
+        if config.experiment.logging.log_wandb and (video_paths is not None):
             for k in video_paths:
                 if os.path.exists(video_paths[k]):
                     wandb.log({"video": wandb.Video(video_paths[k], format="mp4")})

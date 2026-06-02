@@ -16,7 +16,26 @@
         "justMyCode": false,
         "cwd": "${workspaceFolder}/robomimic/robomimic",
         "env": {
-          "CUDA_VISIBLE_DEVICES": "1"
+          "CUDA_VISIBLE_DEVICES": "1",
+          "MUJOCO_GL": "egl"
+        }
+      },
+      {
+        "name": "Run Trained Agent",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/robomimic/robomimic/scripts/run_trained_agent.py",
+        "console": "integratedTerminal",
+        "justMyCode": false,
+        "args": [
+          "--agent", "${workspaceFolder}/dexmimicgen/datasets/training_results/bcrnn_action_dict/DESKTOP_pouring_201_base/20260528022941/models/model_epoch_600.pth",
+          "--n_rollouts", "50",
+          "--horizon", "400",
+          "--seed", "0",
+          "--logdir", "${workspaceFolder}/dexmimicgen/datasets/training_results/bcrnn_action_dict/DESKTOP_pouring_201_base/20260528022941/eval/epoch_600"
+        ],
+        "env": {
+          "MUJOCO_GL": "egl"
         }
       }
     ]

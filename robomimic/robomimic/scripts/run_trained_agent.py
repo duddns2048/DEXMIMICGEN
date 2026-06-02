@@ -52,6 +52,7 @@ from tqdm import tqdm
 import torch
 
 import robomimic
+import dexmimicgen  # registers DexMimicGen environments with robosuite (TwoArmPouring, etc.)
 import robomimic.utils.file_utils as FileUtils
 import robomimic.utils.env_utils as EnvUtils
 import robomimic.utils.torch_utils as TorchUtils
@@ -95,7 +96,8 @@ def run_trained_agent(args):
         env = EnvUtils.create_env_from_metadata(
             env_meta=env_meta_for_this_env,
             env_name=env_name_for_this_env, 
-            render=config.experiment.render, 
+            # render=config.experiment.render, 
+            render=True,
             render_offscreen=True,
             use_image_obs=shape_meta["use_images"], 
             use_depth_obs=shape_meta["use_depths"], 
@@ -129,7 +131,8 @@ def run_trained_agent(args):
         horizon={env_name: rollout_horizon},
         use_goals=config.use_goals,
         num_episodes=num_episodes,
-        render=False,
+        # render=False,
+        render=True,
         video_dir=video_dir,
         video_skip=config.experiment.get("video_skip", 5),
         terminate_on_success=config.experiment.rollout.terminate_on_success,
