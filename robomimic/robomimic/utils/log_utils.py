@@ -112,7 +112,7 @@ class DataLogger(object):
                         name=config.experiment.name,
                         dir=log_dir,
                         mode=("offline" if attempt == num_attempts - 1 else "online"),
-                        sync_tensorboard=True,
+                        sync_tensorboard=False,
                         # config=config
                     )
 
